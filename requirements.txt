@@ -1,0 +1,5 @@
+pip~=25.0.1
+wheel~=0.45.1
+setuptools~=75.8.0
+scikit-build
+cmake
