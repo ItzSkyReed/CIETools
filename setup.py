@@ -3,9 +3,9 @@ import sys
 is_msvc = sys.platform == "win32"
 
 if is_msvc:
-    extra_compile_args = ['/std:c11', '/O2', '/fp:fast', '/arch:AVX2']
+    extra_compile_args = ['/std:c11', '/O2', '/fp:fast']
 else:
-    extra_compile_args = ['-std=c11', '-O3', '-march=native', '-ffast-math']
+    extra_compile_args = ['-std=c11', '-O3', '-ffast-math']
 
 module = Extension(
     'cietools',
