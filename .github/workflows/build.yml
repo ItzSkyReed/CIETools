@@ -36,8 +36,20 @@ jobs:
           sudo apt update
           sudo apt install -y qemu-user-static
 
+      - name: Set up macOS-specific compile flags
+        if: matrix.os == 'macos-latest'
+        run: |
+          if [ "${{ matrix.arch }}" == "arm64" ]; then
+            export EXTRA_COMPILE_ARGS="-target arm64-apple-macos11 -O3 -ffast-math"
+          else
+            export EXTRA_COMPILE_ARGS="-target x86_64-apple-macos11 -O3 -ffast-math"
+          fi
+        shell: bash
+
       - name: Build wheel
         run: python setup.py bdist_wheel
+        env:
+          EXTRA_COMPILE_ARGS: ${{ env.EXTRA_COMPILE_ARGS }}
 
       - name: Upload built wheels
         uses: actions/upload-artifact@v4
