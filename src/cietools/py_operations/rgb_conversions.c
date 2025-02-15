@@ -16,7 +16,7 @@ static int RGB_check_and_extract(PyObject* rgb, RGB* rgb_color) {
         return 0;  // Failure
     }
 
-    for (char i = 0; i < 3; i++) {
+    for (size_t i = 0; i < 3; i++) {
         PyObject* item = PySequence_GetItem(rgb, i);  // Get sequence element
 
         if (!PyLong_Check(item)) {
