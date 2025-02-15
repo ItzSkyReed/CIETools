@@ -111,3 +111,6 @@ dmypy.json
 .pytype/
 cython_debug/
 /build
+**/cmake-build-release
+**/cmake-build-debug
+.idea
