@@ -1,9 +1,6 @@
-#pragma once
 #ifndef CONVERSIONS_H
 #define CONVERSIONS_H
 #include "color_structs.h"
-static double gamma_correction(double c);
-static double F(double t);
 
 // rgb2<colorspace>
 XYZ rgb2xyz(const RGB *rgb);
