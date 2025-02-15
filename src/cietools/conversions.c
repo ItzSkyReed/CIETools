@@ -44,13 +44,13 @@ XYZ lab2xyz(const LAB *lab) {
     const double y = inverse_F(fy) * 1.00000;
     const double z = inverse_F(fz) * 1.08883;
 
-    return (XYZ){x, y, z};
+    return (XYZ){{x, y, z}};
 }
 
 LCh lab2lch(const LAB *lab) {
     const double C = sqrt(pow(lab->a, 2) + pow(lab->b, 2));
     const double h = atan(lab->b/lab->a);
-    return (LCh){lab->l, C, h};
+    return (LCh){{lab->l, C, h}};
 }
 
 XYZ rgb2xyz(const RGB *rgb) {
@@ -65,7 +65,7 @@ XYZ rgb2xyz(const RGB *rgb) {
     const double z = r * 0.0193 + g * 0.1192 + b * 0.9505;
 
     // Return the XYZ values as an XYZ struct
-    return (XYZ){x, y, z};
+    return (XYZ){{x, y, z}};
 }
 
 LAB rgb2lab(const RGB *rgb) {
@@ -102,7 +102,7 @@ LAB xyz2lab(const XYZ *xyz) {
     const double a = 500 * (F(x) - F(y));  // green to red
     const double b = 200 * (F(y) - F(z));  // blue to yellow
 
-    return (LAB){l, a, b};
+    return (LAB){{l, a, b}};
 }
 
 
@@ -124,5 +124,5 @@ XYZ lch2xyz(const LCh *lch) {
 LAB lch2lab(const LCh *lch) {
     const double a = lch->c * cos(lch->h);
     const double b = lch->c * sin(lch->h);
-    return (LAB){lch->l, a, b};
+    return (LAB){{lch->l, a, b}};
 }
