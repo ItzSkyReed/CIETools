@@ -1,0 +1,46 @@
+name: Build and Test CIETools
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        arch: [x86_64, arm64]
+        exclude:
+          - os: windows-latest
+            arch: arm64
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install build dependencies
+        run: pip install setuptools wheel
+
+      - name: Set up QEMU (cross compile arm64 on linux)
+        if: matrix.arch == 'arm64' && matrix.os == 'ubuntu-latest'
+        run: |
+          sudo apt update
+          sudo apt install -y qemu-user-static
+
+      - name: Build wheel
+        run: python setup.py bdist_wheel
+
+      - name: Upload built wheels
+        uses: actions/upload-artifact@v4
+        with:
+          name: cietools-${{ matrix.os }}-${{ matrix.arch }}
+          path: dist/*.whl
