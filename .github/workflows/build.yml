@@ -57,21 +57,14 @@ jobs:
           name: cietools-${{ matrix.os }}-${{ matrix.arch }}
           path: dist/*.whl
 
-      - name: Install the built wheel
-        run: |
-          if [[ "$OSTYPE" == "linux-gnu"* || "$OSTYPE" == "darwin"* ]]; then
-            # Для Linux и macOS используем стандартную подстановку
-            pip install dist/*.whl
-          elif [[ "$OSTYPE" == "cygwin" || "$OSTYPE" == "msys" || "$OSTYPE" == "win32" ]]; then
-            # Для Windows используем PowerShell команду
-            powershell -Command "pip install (Get-ChildItem dist\\*.whl).FullName"
-          fi
+      - name: Install the built wheel on Unix
+        if: runner.os != 'Windows'
+        run: pip install dist/*.whl
+
+      - name: Install the built wheel on Windows
+        if: runner.os == 'Windows'
+        shell: powershell
+        run: pip install (Get-ChildItem dist\*.whl).FullName
 
       - name: Run tests
-        run: |
-          python -m unittest discover -s src/tests -p "*.py"
-
-      - name: Run tests
-        run: |
-          python -m unittest discover -s src/tests -p "*.py"
-
+        run: python -m unittest discover -s src/tests -p "*.py"
