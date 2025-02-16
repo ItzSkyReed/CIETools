@@ -28,7 +28,7 @@ module = Extension(
 
 setup(
     name='cietools',
-    version='0.1',
+    version='0.2.1',
     description='cietools is a library to work with CIE format',
     ext_modules=[module],
     packages=find_packages(),
