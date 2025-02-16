@@ -60,7 +60,6 @@ double delta_e_cmc(const LAB *lab1, const LAB *lab2) {
     return sqrt(delta_l / s_l * (delta_l / s_l) + delta_c / s_c * (delta_c / s_c) + delta_h / s_h * (delta_h / s_h));
 }
 
-// The code is taken from https://github.com/michel-leonard/delta-e-2000/blob/main/ciede_2000.c
 double delta_e_ciede_2000(const LAB *lab1, const LAB *lab2) {
     const double deg2rad = M_PI / 180.0;
     const double rad2deg  = 180.0 / M_PI;

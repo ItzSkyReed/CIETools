@@ -1,1 +1,1 @@
-recursive-include *.pyi
+include src/cietools/cietools.pyi
