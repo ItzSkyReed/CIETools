@@ -71,12 +71,14 @@ jobs:
 
       - name: Install the built wheel on Unix
         if: runner.os != 'Windows'
-        run: pip install dist/*.whl
+        run: pip install dist/*.whl && export PYTHONPATH=$PYTHONPATH:./dist
 
       - name: Install the built wheel on Windows
         if: runner.os == 'Windows'
         shell: powershell
-        run: pip install (Get-ChildItem dist\*.whl).FullName
+        run: |
+          pip install (Get-ChildItem dist\*.whl).FullName
+          $env:PYTHONPATH = "dist;" + $env:PYTHONPATH
 
       - name: Run tests
         run: |
