@@ -217,18 +217,18 @@ class TestDeltaEResults(unittest.TestCase):
     lab3 = (1.51, 60.58, 57.87)
     lab4 = (43.54, 55.58, 22.87)
     def test_delta_e1976(self):
-        self.assertEqual(cietools.deltaE76(self.lab1, self.lab2), 65.27633568147036)
-        self.assertEqual(cietools.deltaE76(self.lab1, self.lab3), 55.0229125001576)
-        self.assertEqual(cietools.deltaE76(self.lab1, self.lab4), 1.0)
+        assertCloseEqual(self, cietools.deltaE76(self.lab1, self.lab2), 65.27633568147036)
+        assertCloseEqual(self, cietools.deltaE76(self.lab1, self.lab3), 55.0229125001576)
+        assertCloseEqual(self, cietools.deltaE76(self.lab1, self.lab4), 1.0)
     def test_delta_e1994(self):
-        self.assertEqual(cietools.deltaE94(self.lab1, self.lab2), 27.014190237467364)
-        self.assertEqual(cietools.deltaE94(self.lab1, self.lab3), 44.672905702167995)
-        self.assertEqual(cietools.deltaE94(self.lab1, self.lab4), 0.3237895227067665)
+        assertCloseEqual(self, cietools.deltaE94(self.lab1, self.lab2), 27.014190237467364)
+        assertCloseEqual(self, cietools.deltaE94(self.lab1, self.lab3), 44.672905702167995)
+        assertCloseEqual(self, cietools.deltaE94(self.lab1, self.lab4), 0.3237895227067665)
 
     def test_delta_e_CMC(self):
-        self.assertEqual(cietools.deltaE_CMC(self.lab1, self.lab2), 33.03114344533832)
-        self.assertEqual(cietools.deltaE_CMC(self.lab1, self.lab3), 45.560631870569885)
-        self.assertEqual(cietools.deltaE_CMC(self.lab1, self.lab4), 0.41238366109844626)
+        assertCloseEqual(self, cietools.deltaE_CMC(self.lab1, self.lab2), 33.03114344533832)
+        assertCloseEqual(self, cietools.deltaE_CMC(self.lab1, self.lab3), 45.560631870569885)
+        assertCloseEqual(self, cietools.deltaE_CMC(self.lab1, self.lab4), 0.41238366109844626)
 
     def test_delta_e2000(self):
         assertCloseEqual(self, cietools.deltaE2000(self.lab1, self.lab2), 25.67274409689742)

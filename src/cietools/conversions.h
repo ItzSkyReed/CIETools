@@ -1,7 +1,10 @@
 #ifndef CONVERSIONS_H
 #define CONVERSIONS_H
 #include "color_structs.h"
+#include  <math.h>
+#ifndef M_PI
 #define M_PI 3.14159265358979323846
+#endif
 // rgb2<colorspace>
 XYZ rgb2xyz(const RGB *rgb);
 LAB rgb2lab(const RGB *rgb);
