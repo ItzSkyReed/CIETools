@@ -80,9 +80,14 @@ jobs:
           pip install (Get-ChildItem dist\*.whl).FullName
           $env:PYTHONPATH = "dist;" + $env:PYTHONPATH
 
+      - name: Log installed packages
+        run: pip list
+
+      - name: Log Python path
+        run: python -c "import sys; print(sys.path)"
+
       - name: Run tests
-        run: |
-          python -m unittest discover -s tests -p "*.py"
+        run: python tests/test_all.py
 
   publish:
     runs-on: ubuntu-latest
