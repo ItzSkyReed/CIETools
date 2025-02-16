@@ -78,8 +78,13 @@ jobs:
         shell: powershell
         run: pip install (Get-ChildItem dist\*.whl).FullName
 
+      - name: Set PYTHONPATH to include site-packages
+        run: |
+          echo "PYTHONPATH=$PYTHONPATH:$VIRTUAL_ENV/lib/python$(python -c 'import sys; print(".".join(map(str, sys.version_info[:2])))')/site-packages" >> $GITHUB_ENV
+
       - name: Run tests
-        run: python -m unittest discover -s tests -p "*.py"
+        run: |
+          python -m unittest discover -s tests -p "*.py"
 
   publish:
     runs-on: ubuntu-latest
