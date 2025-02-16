@@ -77,15 +77,12 @@ jobs:
         if: runner.os == 'Windows'
         shell: powershell
         run: pip install (Get-ChildItem dist\*.whl).FullName
-        # Trying to understand what is wrong...
-      - name: List installed packages
-        run: pip list
 
-      - name: Print Python path
-        run: python -c "import sys; print(sys.path)"
+      - name: List site-packages contents
+        run: ls -R $(python -c "import site; print(site.getsitepackages()[0])")
 
-      - name: Verify cietools installation
-        run: python -c "import cietools; print(cietools)"
+      - name: List cietools contents
+        run: ls -R $(python -c "import site; import os; print(os.path.join(site.getsitepackages()[0], 'cietools'))")
 
       - name: Run tests
         run: python -m unittest discover -s src/tests -p "*.py"
