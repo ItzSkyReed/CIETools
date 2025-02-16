@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = ""
 
 [project]
-name = "СIE_Tools"
+name = "cietools"
 version = "0.1.0"
 description = "A C-based python library to convert CIE formats/calculate Delta E"
 readme = "README.md"
