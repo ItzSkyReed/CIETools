@@ -2,6 +2,7 @@
 #include "lab_conversions.h"
 #include "../color_structs.h"
 #include "../conversions.h"
+#include "common.h"
 #define PY_SSIZE_T_CLEAN
 
 // Function to check and extract LCh values from the input
@@ -16,34 +17,26 @@ int LAB_check_and_extract(PyObject *lab, LAB *lab_color) {
         return 0; // Failure
     }
 
-    for (char i = 0; i < 3; i++) {
-        PyObject *item = PySequence_GetItem(lab, i); // Get sequence element
-
-        if (!PyFloat_Check(item)) {
-            PyErr_SetString(PyExc_TypeError, "LAB elements must be floats");
-            return 0; // Failure
+    if (!get_float_from_sequence(lab, 0, &lab_color->l) ||
+        !get_float_from_sequence(lab, 1, &lab_color->a) ||
+        !get_float_from_sequence(lab, 2, &lab_color->b)) {
+        return 0;
         }
-    }
 
-    const double L = PyFloat_AsDouble(PySequence_GetItem(lab, 0));
-    if (L < 0.0 || L > 100.0) {
+    if (lab_color->l < 0.0 || lab_color->l > 100.0) {
         PyErr_SetString(PyExc_ValueError, "L* element must be in range [0, 100]");
         return 0;
     }
 
-    const double A = PyFloat_AsDouble(PySequence_GetItem(lab, 1));
-    if (A < -127.0 || A > 127.0) {
+    if (lab_color->a < -127.0 || lab_color->a > 127.0) {
         PyErr_SetString(PyExc_ValueError, "A* element must be in range [-127, 127]");
         return 0;
     }
-    const double B = PyFloat_AsDouble(PySequence_GetItem(lab, 2));
-    if (B < -127.0 || B > 127.0) {
+
+    if (lab_color->b < -127.0 || lab_color->b > 127.0) {
         PyErr_SetString(PyExc_ValueError, "B* element must be in range [-127, 127]");
         return 0;
     }
-    lab_color->l = L;
-    lab_color->a = A;
-    lab_color->b = B;
 
     return 1; // Success
 }

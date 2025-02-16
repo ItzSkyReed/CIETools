@@ -1,10 +1,5 @@
-import sys, os
-sys.path.append(os.path.dirname(__file__))
-import unittest
 import cietools as ct
 import math
-
-import cietools
 
 
 def assertCloseEqualTuple(self, clr1, clr2, tolerance=sys.float_info.epsilon):

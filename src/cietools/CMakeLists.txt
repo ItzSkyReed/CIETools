@@ -21,6 +21,8 @@ add_library(CIETools SHARED
         py_operations/xyz_conversions.h
         py_operations/delta_e.c
         py_operations/delta_e.h
+        py_operations/common.h
+        py_operations/common.c
 )
 
 if(WIN32)

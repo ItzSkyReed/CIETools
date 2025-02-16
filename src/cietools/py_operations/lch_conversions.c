@@ -2,6 +2,7 @@
 #include "../color_structs.h"
 #include "../conversions.h"
 #include "lch_conversions.h"
+#include "common.h"
 #define PY_SSIZE_T_CLEAN
 
 // Function to check and extract LCh values from the input
@@ -16,34 +17,26 @@ static int LCh_check_and_extract(PyObject *lch, LCh *lch_color) {
         return 0; // Failure
     }
 
-    for (char i = 0; i < 3; i++) {
-        PyObject *item = PySequence_GetItem(lch, i); // Get sequence element
-
-        if (!PyFloat_Check(item)) {
-            PyErr_SetString(PyExc_TypeError, "LCh elements must be floats");
-            return 0; // Failure
+    if (!get_float_from_sequence(lch, 0, &lch_color->l) ||
+        !get_float_from_sequence(lch, 1, &lch_color->c) ||
+        !get_float_from_sequence(lch, 2, &lch_color->h)) {
+        return 0;
         }
-    }
 
-    const double L = PyFloat_AsDouble(PySequence_GetItem(lch, 0));
-    if (L < 0.0 || L > 100.0) {
+    if (lch_color->l < 0.0 || lch_color->l > 100.0) {
         PyErr_SetString(PyExc_ValueError, "L* element must be in range [0, 100]");
         return 0;
     }
 
-    const double C = PyFloat_AsDouble(PySequence_GetItem(lch, 1));
-    if (C < 0.0 || C > 200.0) {
+    if (lch_color->c < 0.0 || lch_color->c > 200.0) {
         PyErr_SetString(PyExc_ValueError, "C* element must be in range [0, 200]");
         return 0;
     }
-    const double h = PyFloat_AsDouble(PySequence_GetItem(lch, 2));
-    if (h < 0.0 || h > 360.0) {
+
+    if (lch_color->h < 0.0 || lch_color->h > 360.0) {
         PyErr_SetString(PyExc_ValueError, "h* element must be in range [0, 360]");
         return 0;
     }
-    lch_color->l = L;
-    lch_color->c = C;
-    lch_color->h = h;
 
     return 1; // Success
 }

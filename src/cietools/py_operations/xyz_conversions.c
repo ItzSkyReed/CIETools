@@ -2,6 +2,8 @@
 #include "xyz_conversions.h"
 #include "../color_structs.h"
 #include "../conversions.h"
+#include "common.h"
+
 #define PY_SSIZE_T_CLEAN
 
 // Function to check and extract LCh values from the input
@@ -16,34 +18,27 @@ static int XYZ_check_and_extract(PyObject *xyz, XYZ *xyz_color) {
         return 0; // Failure
     }
 
-    for (char i = 0; i < 3; i++) {
-        PyObject *item = PySequence_GetItem(xyz, i); // Get sequence element
 
-        if (!PyFloat_Check(item)) {
-            PyErr_SetString(PyExc_TypeError, "XYZ elements must be floats");
-            return 0; // Failure
+    if (!get_float_from_sequence(xyz, 0, &xyz_color->x) ||
+        !get_float_from_sequence(xyz, 1, &xyz_color->y) ||
+        !get_float_from_sequence(xyz, 2, &xyz_color->z)) {
+        return 0;
         }
-    }
 
-    const double x = PyFloat_AsDouble(PySequence_GetItem(xyz, 0));
-    if (x < 0.0 || x > 1.0) {
+    if (xyz_color->x < 0.0 || xyz_color->x > 1.0) {
         PyErr_SetString(PyExc_ValueError, "X element must be in range [0, 1]");
         return 0;
     }
 
-    const double y = PyFloat_AsDouble(PySequence_GetItem(xyz, 1));
-    if (y < 0.0 || y > 1.0) {
+    if (xyz_color->y < 0.0 || xyz_color->y > 1.0) {
         PyErr_SetString(PyExc_ValueError, "Y element must be in range [0, 1]");
         return 0;
     }
-    const double z = PyFloat_AsDouble(PySequence_GetItem(xyz, 2));
-    if (z < 0.0 || z > 1.0) {
+
+    if (xyz_color->z < 0.0 || xyz_color->z > 1.0) {
         PyErr_SetString(PyExc_ValueError, "Z element must be in range [0, 1]");
         return 0;
     }
-    xyz_color->x = x;
-    xyz_color->y = y;
-    xyz_color->z = z;
 
     return 1; // Success
 }

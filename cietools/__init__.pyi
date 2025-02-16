@@ -1,4 +1,6 @@
-def rgb2lab(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
+from collections.abc import Sequence
+
+def rgb2lab(rgb: Sequence[int, int, int]) -> tuple[float, float, float]:
     """
     Convert RGB values (in the range 0-255) to LAB color space.
     :param rgb: Tuple with RGB values (R, G, B)
@@ -7,7 +9,7 @@ def rgb2lab(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
     ...
 
 
-def rgb2lch(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
+def rgb2lch(rgb: Sequence[int, int, int]) -> tuple[float, float, float]:
     """
     Convert RGB values (in the range 0-255) to LCh color space.
     :param rgb: Tuple with RGB values (R, G, B)
@@ -16,7 +18,7 @@ def rgb2lch(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
     ...
 
 
-def rgb2xyz(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
+def rgb2xyz(rgb: Sequence[int, int, int]) -> tuple[float, float, float]:
     """
     Convert RGB values (in the range 0-255) to XYZ color space.
     :param rgb: Tuple with RGB values (R, G, B)
@@ -25,7 +27,7 @@ def rgb2xyz(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
     ...
 
 
-def xyz2lab(xyz: tuple[float, float, float]) -> tuple[float, float, float]:
+def xyz2lab(xyz: Sequence[float, float, float]) -> tuple[float, float, float]:
     """
     Convert XYZ values to LAB color space.
     :param xyz: Tuple with XYZ values (X > 0; 0 <= Y <= 100; Z > 0)
@@ -34,7 +36,7 @@ def xyz2lab(xyz: tuple[float, float, float]) -> tuple[float, float, float]:
     ...
 
 
-def xyz2lch(xyz: tuple[float, float, float]) -> tuple[float, float, float]:
+def xyz2lch(xyz: Sequence[float, float, float]) -> tuple[float, float, float]:
     """
     Convert XYZ values to LCh color space.
     :param xyz: Tuple with XYZ values (X > 0; 0 <= Y <= 100; Z > 0)
@@ -43,7 +45,7 @@ def xyz2lch(xyz: tuple[float, float, float]) -> tuple[float, float, float]:
     ...
 
 
-def xyz2rgb(xyz: tuple[float, float, float]) -> tuple[int, int, int]:
+def xyz2rgb(xyz: Sequence[float, float, float]) -> tuple[int, int, int]:
     """
     Convert XYZ values to RGB color space.
     :param xyz: Tuple with XYZ values (X > 0; 0 <= Y <= 100; Z > 0)
@@ -52,7 +54,7 @@ def xyz2rgb(xyz: tuple[float, float, float]) -> tuple[int, int, int]:
     ...
 
 
-def lab2lch(lab: tuple[float, float, float]) -> tuple[float, float, float]:
+def lab2lch(lab: Sequence[float, float, float]) -> tuple[float, float, float]:
     """
     Convert LAB values to LCh color space.
     :param lab: Tuple with LAB values (0 <= L <= 100; -127 <= A <= 127; -127 <= B <= 127)
@@ -61,7 +63,7 @@ def lab2lch(lab: tuple[float, float, float]) -> tuple[float, float, float]:
     ...
 
 
-def lab2xyz(lab: tuple[float, float, float]) -> tuple[float, float, float]:
+def lab2xyz(lab: Sequence[float, float, float]) -> tuple[float, float, float]:
     """
     Convert LAB values to XYZ color space.
     :param lab: Tuple with LAB values (0 <= L <= 100; -127 <= A <= 127; -127 <= B <= 127)
@@ -70,7 +72,7 @@ def lab2xyz(lab: tuple[float, float, float]) -> tuple[float, float, float]:
     ...
 
 
-def lab2rgb(lab: tuple[float, float, float]) -> tuple[int, int, int]:
+def lab2rgb(lab: Sequence[float, float, float]) -> tuple[int, int, int]:
     """
     Convert LAB values to RGB color space.
     :param lab: Tuple with LAB values (0 <= L <= 100; -127 <= A <= 127; -127 <= B <= 127)
@@ -79,7 +81,7 @@ def lab2rgb(lab: tuple[float, float, float]) -> tuple[int, int, int]:
     ...
 
 
-def lch2lab(lch: tuple[float, float, float]) -> tuple[float, float, float]:
+def lch2lab(lch: Sequence[float, float, float]) -> tuple[float, float, float]:
     """
     Convert LCh values to LAB color space.
     :param lch: Tuple with LCh values (0 <= L <= 100; 0 <= C <= 100; 0 <= h <= 360)
@@ -88,7 +90,7 @@ def lch2lab(lch: tuple[float, float, float]) -> tuple[float, float, float]:
     ...
 
 
-def lch2xyz(lch: tuple[float, float, float]) -> tuple[float, float, float]:
+def lch2xyz(lch: Sequence[float, float, float]) -> tuple[float, float, float]:
     """
     Convert LCh values to XYZ color space.
     :param lch: Tuple with LAB values (0 <= L <= 100; 0 <= C <= 100; 0 <= h <= 360)
@@ -97,7 +99,7 @@ def lch2xyz(lch: tuple[float, float, float]) -> tuple[float, float, float]:
     ...
 
 
-def lch2rgb(lch: tuple[float, float, float]) -> tuple[int, int, int]:
+def lch2rgb(lch: Sequence[float, float, float]) -> tuple[int, int, int]:
     """
     Convert LCh values to RGB color space.
     :param lch: Tuple with LAB values (0 <= L <= 100; 0 <= C <= 100; 0 <= h <= 360)
@@ -106,7 +108,7 @@ def lch2rgb(lch: tuple[float, float, float]) -> tuple[int, int, int]:
     ...
 
 
-def deltaE76(lab1: tuple[float, float, float], lab2: tuple[float, float, float]) -> float:
+def deltaE76(lab1: Sequence[float, float, float], lab2: tuple[float, float, float]) -> float:
     """
     Calculates the CIE76 color difference (Delta E 1976) between two colors in the CIELAB color space.
 
@@ -126,7 +128,7 @@ def deltaE76(lab1: tuple[float, float, float], lab2: tuple[float, float, float])
     ...
 
 
-def deltaE94(lab1: tuple[float, float, float], lab2: tuple[float, float, float]) -> float:
+def deltaE94(lab1: Sequence[float, float, float], lab2: Sequence[float, float, float]) -> float:
     """
     Calculates the CIE94 color difference (Delta E 1994) between two colors in the CIELAB color space.
 
@@ -150,7 +152,7 @@ def deltaE94(lab1: tuple[float, float, float], lab2: tuple[float, float, float])
     """
     ...
 
-def deltaE_CMC(lab1: tuple[float, float, float], lab2: tuple[float, float, float]) -> float:
+def deltaE_CMC(lab1: Sequence[float, float, float], lab2: Sequence[float, float, float]) -> float:
     """
     Calculates the CMC l:c color difference (Delta E CMC) between two colors in the CIELAB color space.
 
@@ -178,7 +180,7 @@ def deltaE_CMC(lab1: tuple[float, float, float], lab2: tuple[float, float, float
     """
     ...
 
-def deltaE2000(lab1: tuple[float, float, float], lab2: tuple[float, float, float]) -> float:
+def deltaE2000(lab1: Sequence[float, float, float], lab2: Sequence[float, float, float]) -> float:
     """
     Calculates the CIEDE2000 color difference (Delta E 2000) between two colors in the CIELAB color space.
 

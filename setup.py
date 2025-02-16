@@ -17,7 +17,8 @@ module = Extension(
         'src/cietools/py_operations/lch_conversions.c',
         'src/cietools/py_operations/lab_conversions.c',
         'src/cietools/py_operations/xyz_conversions.c',
-        'src/cietools/py_operations/delta_e.c'
+        'src/cietools/py_operations/delta_e.c',
+        'src/cietools/py_operations/common.c'
     ],
     extra_compile_args=extra_compile_args,
     extra_link_args=[]
