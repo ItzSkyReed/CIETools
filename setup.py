@@ -1,14 +1,12 @@
 from setuptools import setup, Extension, find_packages
 import sys
 
-# Определение компилятора в зависимости от платформы
 is_msvc = sys.platform == "win32"
 if is_msvc:
     extra_compile_args = ['/std:c11', '/O2', '/fp:fast']
 else:
     extra_compile_args = ['-std=c11', '-O3', '-ffast-math']
 
-# Создание расширения для C
 module = Extension(
     'cietools._cietools_c_ext',
     sources=[
