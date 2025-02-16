@@ -78,14 +78,8 @@ jobs:
         shell: powershell
         run: pip install (Get-ChildItem dist\*.whl).FullName
 
-      - name: List site-packages contents
-        run: ls -R $(python -c "import site; print(site.getsitepackages()[0])")
-
-      - name: List cietools contents
-        run: ls -R $(python -c "import site; import os; print(os.path.join(site.getsitepackages()[0], 'cietools'))")
-
       - name: Run tests
-        run: python -m unittest discover -s src/tests -p "*.py"
+        run: python -m unittest discover -s tests -p "*.py"
 
   publish:
     runs-on: ubuntu-latest
