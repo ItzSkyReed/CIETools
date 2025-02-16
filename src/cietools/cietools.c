@@ -39,7 +39,7 @@ static PyMethodDef CieToolsMethods[] = {
     },
     {
         "xyz2rgb",
-        PyXYZ2LCh,
+        PyXYZ2RGB,
         METH_O,
         "Convert XYZ color (tuple[float, float, float] to RGB"
     },
@@ -72,12 +72,6 @@ static PyMethodDef CieToolsMethods[] = {
         PyLCh2XYZ,
         METH_O,
         "Convert LCh color (tuple[float, float, float] to CIE XYZ"
-    },
-    {
-        "lch2rgb",
-        PyLCh2RGB,
-        METH_O,
-        "Convert LCh color (tuple[float, float, float] to RGB"
     },
     {
         "lch2rgb",

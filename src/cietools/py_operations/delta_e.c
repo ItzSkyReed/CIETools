@@ -7,6 +7,11 @@
 static int parse_lab_args(PyObject *args, LAB *lab1, LAB *lab2) {
     PyObject *arg1, *arg2;
 
+    if (PyTuple_Size(args) != 2) {
+        PyErr_SetString(PyExc_TypeError, "Expected exactly two arguments.");
+        return 0;
+    }
+
     if (!PyArg_ParseTuple(args, "OO", &arg1, &arg2)) {
         return 0;
     }

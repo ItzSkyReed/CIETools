@@ -1,7 +1,7 @@
 #include "color_structs.h"
 #include "conversions.h"
 #include <math.h>
-
+#include <stdio.h>
 static double gamma_correction(const double c) {
     if (c <= 0.04045)
         return c / 12.92;
@@ -21,7 +21,7 @@ static double F(const double t) {
 }
 
 static double inverse_F(const double t) {
-    return t > 6.0 / 29.0 ? pow(t, 3) : (t - 16.0 / 116.0) / 7.787;
+    return t > 6.0 / 29.0 ? t * t * t : (t - 16.0 / 116.0) / 7.787;
 }
 
 static unsigned char clamp2rgb(double value) {
@@ -48,9 +48,9 @@ XYZ lab2xyz(const LAB *lab) {
 }
 
 LCh lab2lch(const LAB *lab) {
-    const double C = sqrt(pow(lab->a, 2) + pow(lab->b, 2));
-    const double h = atan(lab->b/lab->a);
-    return (LCh){{lab->l, C, h}};
+    const double C = hypot(lab->a, lab->b);
+    const double h = atan2(lab->b, lab->a) * (180.0 / M_PI);
+    return (LCh){{lab->l, C, h < 0 ? h + 360.0 : h}};
 }
 
 XYZ rgb2xyz(const RGB *rgb) {
@@ -84,10 +84,12 @@ RGB xyz2rgb(const XYZ *xyz) {
     double g = xyz->x * -0.9689 + xyz->y *  1.8758 + xyz->z *  0.0415;
     double b = xyz->x *  0.0557 + xyz->y * -0.2040 + xyz->z *  1.0570;
 
+    // Обратная гамма-коррекция
     r = inverse_gamma_correction(r);
     g = inverse_gamma_correction(g);
     b = inverse_gamma_correction(b);
 
+    // Ограничение в диапазоне [0,255]
     return (RGB){{clamp2rgb(r), clamp2rgb(g), clamp2rgb(b)}};
 }
 
@@ -105,7 +107,6 @@ LAB xyz2lab(const XYZ *xyz) {
     return (LAB){{l, a, b}};
 }
 
-
 LCh xyz2lch(const XYZ *xyz) {
     const LAB lab = xyz2lab(xyz);
     return lab2lch(&lab);
@@ -122,7 +123,8 @@ XYZ lch2xyz(const LCh *lch) {
 }
 
 LAB lch2lab(const LCh *lch) {
-    const double a = lch->c * cos(lch->h);
-    const double b = lch->c * sin(lch->h);
+    const double h_rad = lch->h * (M_PI / 180.0);
+    const double a = lch->c * cos(h_rad);
+    const double b = lch->c * sin(h_rad);
     return (LAB){{lch->l, a, b}};
 }

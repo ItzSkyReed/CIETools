@@ -93,9 +93,9 @@ PyObject *PyLAB2RGB(PyObject *self, PyObject *arg) {
     const RGB rgb_color = lab2rgb(&LAB_color);
 
     PyObject *tuple = PyTuple_New(3);
-    PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(rgb_color.r));
-    PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(rgb_color.g));
-    PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(rgb_color.b));
+    PyTuple_SetItem(tuple, 0, PyLong_FromLong(rgb_color.r));
+    PyTuple_SetItem(tuple, 1, PyLong_FromLong(rgb_color.g));
+    PyTuple_SetItem(tuple, 2, PyLong_FromLong(rgb_color.b));
 
     return tuple;
 }

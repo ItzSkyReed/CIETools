@@ -56,3 +56,11 @@ jobs:
         with:
           name: cietools-${{ matrix.os }}-${{ matrix.arch }}
           path: dist/*.whl
+
+      - name: Install the built wheel
+        run: |
+          pip install dist/*.whl
+
+      - name: Run tests
+        run: |
+          python -m unittest discover -s src/tests -p "*.py"

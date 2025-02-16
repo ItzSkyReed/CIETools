@@ -26,19 +26,19 @@ static int XYZ_check_and_extract(PyObject *xyz, XYZ *xyz_color) {
     }
 
     const double x = PyFloat_AsDouble(PySequence_GetItem(xyz, 0));
-    if (x > 0.0) {
-        PyErr_SetString(PyExc_ValueError, "X element must be greater than 0");
+    if (x < 0.0 || x > 1.0) {
+        PyErr_SetString(PyExc_ValueError, "X element must be in range [0, 1]");
         return 0;
     }
 
     const double y = PyFloat_AsDouble(PySequence_GetItem(xyz, 1));
-    if (y < 0.0 || y > 100.0) {
-        PyErr_SetString(PyExc_ValueError, "Y element must be in range [0, 100]");
+    if (y < 0.0 || y > 1.0) {
+        PyErr_SetString(PyExc_ValueError, "Y element must be in range [0, 1]");
         return 0;
     }
     const double z = PyFloat_AsDouble(PySequence_GetItem(xyz, 2));
-    if (z > 0.0) {
-        PyErr_SetString(PyExc_ValueError, "Z element must be greater than 0");
+    if (z < 0.0 || z > 1.0) {
+        PyErr_SetString(PyExc_ValueError, "Z element must be in range [0, 1]");
         return 0;
     }
     xyz_color->x = x;
@@ -93,9 +93,9 @@ PyObject *PyXYZ2RGB(PyObject *self, PyObject *arg) {
     const RGB rgb_color = xyz2rgb(&xyz_color);
 
     PyObject *tuple = PyTuple_New(3);
-    PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(rgb_color.r));
-    PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(rgb_color.g));
-    PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(rgb_color.b));
+    PyTuple_SetItem(tuple, 0, PyLong_FromLong(rgb_color.r));
+    PyTuple_SetItem(tuple, 1, PyLong_FromLong(rgb_color.g));
+    PyTuple_SetItem(tuple, 2, PyLong_FromLong(rgb_color.b));
 
     return tuple;
 }
