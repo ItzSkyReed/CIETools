@@ -7,7 +7,7 @@ name = "cietools"
 version = "0.1.0"
 description = "A C-based python library to convert CIE formats/calculate Delta E"
 readme = "README.md"
-license = { file = "LICENSE" }
+license = "CC-BY-4.0"
 authors = [
     { name = "ItzSkyReed" },
 ]
