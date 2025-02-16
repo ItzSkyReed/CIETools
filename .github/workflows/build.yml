@@ -1,4 +1,4 @@
-name: Build and Test CIETools
+name: Build, Test and Publish CIETools
 
 on:
   push:
@@ -68,3 +68,41 @@ jobs:
 
       - name: Run tests
         run: python -m unittest discover -s src/tests -p "*.py"
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    steps:
+      - name: Download Ubuntu x86_64 wheel
+        uses: actions/download-artifact@v4
+        with:
+          name: cietools-ubuntu-latest-x86_64
+          path: wheels
+
+      - name: Download macOS x86_64 wheel
+        uses: actions/download-artifact@v4
+        with:
+          name: cietools-macos-latest-x86_64
+          path: wheels
+
+      - name: Download macOS arm64 wheel
+        uses: actions/download-artifact@v4
+        with:
+          name: cietools-macos-latest-arm64
+          path: wheels
+
+      - name: Download Windows x86_64 wheel
+        uses: actions/download-artifact@v4
+        with:
+          name: cietools-windows-latest-x86_64
+          path: wheels
+
+      - name: Install Twine
+        run: pip install twine
+
+      - name: Publish wheels to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_TOKEN }}
+        run: twine upload wheels/*.whl

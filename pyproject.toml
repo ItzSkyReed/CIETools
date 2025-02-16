@@ -1,3 +1,26 @@
 [build-system]
-requires = ["setuptools", "wheel", "scikit-build", "cmake"]
+requires = ["setuptools", "wheel"]
 build-backend = ""
+
+[project]
+name = "СIE_Tools"
+version = "0.1.0"
+description = "A C-based python library to convert CIE formats/calculate Delta E"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    { name = "ItzSkyReed" },
+]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows"
+]
+platforms = ["x86_64", "arm64"]
+requires-python = ">= 3.13"
+
+[project.urls]
+Homepage = "https://github.com/ItzSkyReed/CIETools"
