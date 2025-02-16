@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = ""
 
 [tool.setuptools]
-license-files = [ "LICENSE" ]
+license-file = [ "LICENSE" ]
 
 [project]
 name = "cietools"
