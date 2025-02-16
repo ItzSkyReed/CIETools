@@ -2,12 +2,19 @@
 requires = ["setuptools", "wheel"]
 build-backend = ""
 
+[tool.setuptools]
+license-files = [ "LICENSE" ]
+
 [project]
 name = "cietools"
 version = "0.1.0"
 description = "A C-based python library to convert CIE formats/calculate Delta E"
 readme = "README.md"
 license = { text = "CC-BY-4.0" }
+dependencies = [
+    "wheel",
+    "setuptools"
+]
 authors = [
     { name = "ItzSkyReed" },
 ]
