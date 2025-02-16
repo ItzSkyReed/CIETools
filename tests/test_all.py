@@ -1,6 +1,8 @@
+import unittest
+
 import cietools as ct
 import math
-
+import sys
 
 def assertCloseEqualTuple(self, clr1, clr2, tolerance=sys.float_info.epsilon):
     for a, b in zip(clr1, clr2):
@@ -170,41 +172,41 @@ class TestDeltaEArgumentConfigurations(unittest.TestCase):
     lab3 = (1.51, 60.58, 57.87)
     def test_too_many_arguments(self):
         with self.assertRaises(TypeError):
-            cietools.deltaE76(self.lab1, self.lab2, self.lab3)
+            ct.deltaE76(self.lab1, self.lab2, self.lab3)
         with self.assertRaises(TypeError):
-            cietools.deltaE94(self.lab1, self.lab2, self.lab3)
+            ct.deltaE94(self.lab1, self.lab2, self.lab3)
         with self.assertRaises(TypeError):
-            cietools.deltaE_CMC(self.lab1, self.lab2, self.lab3)
+            ct.deltaE_CMC(self.lab1, self.lab2, self.lab3)
         with self.assertRaises(TypeError):
-            cietools.deltaE2000(self.lab1, self.lab2, self.lab3)
+            ct.deltaE2000(self.lab1, self.lab2, self.lab3)
 
     def test_too_few_arguments(self):
         with self.assertRaises(TypeError):
-            cietools.deltaE76(self.lab1)
+            ct.deltaE76(self.lab1)
         with self.assertRaises(TypeError):
-            cietools.deltaE94(self.lab1)
+            ct.deltaE94(self.lab1)
         with self.assertRaises(TypeError):
-            cietools.deltaE_CMC(self.lab1)
+            ct.deltaE_CMC(self.lab1)
         with self.assertRaises(TypeError):
-            cietools.deltaE2000(self.lab1)
+            ct.deltaE2000(self.lab1)
 
     def test_wrong_type_arguments(self):
         with self.assertRaises(TypeError):
-            cietools.deltaE76(self.lab1, "123")
+            ct.deltaE76(self.lab1, "123")
         with self.assertRaises(TypeError):
-            cietools.deltaE94(self.lab1, "123")
+            ct.deltaE94(self.lab1, "123")
         with self.assertRaises(TypeError):
-            cietools.deltaE_CMC(self.lab1, "123")
+            ct.deltaE_CMC(self.lab1, "123")
         with self.assertRaises(TypeError):
-            cietools.deltaE2000(self.lab1, "123")
+            ct.deltaE2000(self.lab1, "123")
         with self.assertRaises(TypeError):
-            cietools.deltaE76("123", self.lab2)
+            ct.deltaE76("123", self.lab2)
         with self.assertRaises(TypeError):
-            cietools.deltaE94("123", self.lab2)
+            ct.deltaE94("123", self.lab2)
         with self.assertRaises(TypeError):
-            cietools.deltaE_CMC("123", self.lab2)
+            ct.deltaE_CMC("123", self.lab2)
         with self.assertRaises(TypeError):
-            cietools.deltaE2000("123", self.lab2)
+            ct.deltaE2000("123", self.lab2)
 
 class TestDeltaEResults(unittest.TestCase):
     lab1 = (43.54, 54.58, 22.87)
@@ -212,23 +214,23 @@ class TestDeltaEResults(unittest.TestCase):
     lab3 = (1.51, 60.58, 57.87)
     lab4 = (43.54, 55.58, 22.87)
     def test_delta_e1976(self):
-        assertCloseEqual(self, cietools.deltaE76(self.lab1, self.lab2), 65.27633568147036)
-        assertCloseEqual(self, cietools.deltaE76(self.lab1, self.lab3), 55.0229125001576)
-        assertCloseEqual(self, cietools.deltaE76(self.lab1, self.lab4), 1.0)
+        assertCloseEqual(self, ct.deltaE76(self.lab1, self.lab2), 65.27633568147036)
+        assertCloseEqual(self, ct.deltaE76(self.lab1, self.lab3), 55.0229125001576)
+        assertCloseEqual(self, ct.deltaE76(self.lab1, self.lab4), 1.0)
     def test_delta_e1994(self):
-        assertCloseEqual(self, cietools.deltaE94(self.lab1, self.lab2), 27.014190237467364)
-        assertCloseEqual(self, cietools.deltaE94(self.lab1, self.lab3), 44.672905702167995)
-        assertCloseEqual(self, cietools.deltaE94(self.lab1, self.lab4), 0.3237895227067665)
+        assertCloseEqual(self, ct.deltaE94(self.lab1, self.lab2), 27.014190237467364)
+        assertCloseEqual(self, ct.deltaE94(self.lab1, self.lab3), 44.672905702167995)
+        assertCloseEqual(self, ct.deltaE94(self.lab1, self.lab4), 0.3237895227067665)
 
     def test_delta_e_CMC(self):
-        assertCloseEqual(self, cietools.deltaE_CMC(self.lab1, self.lab2), 33.03114344533832)
-        assertCloseEqual(self, cietools.deltaE_CMC(self.lab1, self.lab3), 45.560631870569885)
-        assertCloseEqual(self, cietools.deltaE_CMC(self.lab1, self.lab4), 0.41238366109844626)
+        assertCloseEqual(self, ct.deltaE_CMC(self.lab1, self.lab2), 33.03114344533832)
+        assertCloseEqual(self, ct.deltaE_CMC(self.lab1, self.lab3), 45.560631870569885)
+        assertCloseEqual(self, ct.deltaE_CMC(self.lab1, self.lab4), 0.41238366109844626)
 
     def test_delta_e2000(self):
-        assertCloseEqual(self, cietools.deltaE2000(self.lab1, self.lab2), 25.67274409689742)
-        assertCloseEqual(self, cietools.deltaE2000(self.lab1, self.lab3), 33.51375140397363)
-        assertCloseEqual(self, cietools.deltaE2000(self.lab1, self.lab4), 0.32775686163897877)
+        assertCloseEqual(self, ct.deltaE2000(self.lab1, self.lab2), 25.67274409689742)
+        assertCloseEqual(self, ct.deltaE2000(self.lab1, self.lab3), 33.51375140397363)
+        assertCloseEqual(self, ct.deltaE2000(self.lab1, self.lab4), 0.32775686163897877)
 
 if __name__ == "__main__":
     unittest.main()
