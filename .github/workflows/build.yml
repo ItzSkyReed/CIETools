@@ -99,7 +99,9 @@ jobs:
           path: wheels
 
       - name: Install Twine
-        run: pip install twine
+        run: |
+          pip install packaging>=24.2
+          pip install twine>=6.1.0
 
       - name: Publish wheels to PyPI
         env:
