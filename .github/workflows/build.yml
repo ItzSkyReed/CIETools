@@ -59,8 +59,13 @@ jobs:
 
       - name: Install the built wheel
         run: |
-          pip install dist/*.whl
+          if ($IsWindows) {
+            pip install (Get-ChildItem dist\*.whl).FullName
+          } else {
+            pip install dist/*.whl
+          }
 
       - name: Run tests
         run: |
           python -m unittest discover -s src/tests -p "*.py"
+

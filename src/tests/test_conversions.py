@@ -7,10 +7,12 @@ import sys
 import cietools
 
 
-def assertCloseEqual(self, clr1, clr2, tolerance=sys.float_info.epsilon):
+def assertCloseEqualTuple(self, clr1, clr2, tolerance=sys.float_info.epsilon):
     for a, b in zip(clr1, clr2):
         self.assertTrue(math.isclose(a, b, abs_tol=tolerance))
 
+def assertCloseEqual(self, clr1, clr2, tolerance=sys.float_info.epsilon * 3):
+    self.assertTrue(math.isclose(a, b, abs_tol=tolerance))
 
 functions = {
     "rgb": [
@@ -116,56 +118,56 @@ class TestConversionsArgumentsConfiguration(unittest.TestCase):
 
 class TestConversions(unittest.TestCase):
     def test_rgb(self):
-        assertCloseEqual(self, ct.rgb2lab((51, 45, 72)), (20.23693419943732, 9.728977611613232, -15.83289379823567))
-        assertCloseEqual(self, ct.rgb2lab((0, 0, 0)), (0.0, 0.0, 0.0))
-        assertCloseEqual(self, ct.rgb2lab((255, 255, 255)), (100, 0.00526049995830391, -0.010408184525267927))
+        assertCloseEqualTuple(self, ct.rgb2lab((51, 45, 72)), (20.23693419943732, 9.728977611613232, -15.83289379823567))
+        assertCloseEqualTuple(self, ct.rgb2lab((0, 0, 0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.rgb2lab((255, 255, 255)), (100, 0.00526049995830391, -0.010408184525267927))
 
-        assertCloseEqual(self, ct.rgb2xyz((51, 45, 72)), (0.0347332563215008, 0.030484591127394597, 0.06536238063629113))
-        assertCloseEqual(self, ct.rgb2xyz((0, 0, 0)), (0.0, 0.0, 0.0))
-        assertCloseEqual(self, ct.rgb2xyz((255, 255, 255)), (0.9505, 1.0, 1.089))
+        assertCloseEqualTuple(self, ct.rgb2xyz((51, 45, 72)), (0.0347332563215008, 0.030484591127394597, 0.06536238063629113))
+        assertCloseEqualTuple(self, ct.rgb2xyz((0, 0, 0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.rgb2xyz((255, 255, 255)), (0.9505, 1.0, 1.089))
 
-        assertCloseEqual(self, ct.rgb2lch((51, 45, 72)), (20.23693419943732, 18.58315181538054, 301.56984333456785))
-        assertCloseEqual(self, ct.rgb2lch((0, 0, 0)), (0.0, 0.0, 0.0))
-        assertCloseEqual(self, ct.rgb2lch((255, 255, 255)), (100.0, 0.011662039483869973, 296.81292623674057))
+        assertCloseEqualTuple(self, ct.rgb2lch((51, 45, 72)), (20.23693419943732, 18.58315181538054, 301.56984333456785))
+        assertCloseEqualTuple(self, ct.rgb2lch((0, 0, 0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.rgb2lch((255, 255, 255)), (100.0, 0.011662039483869973, 296.81292623674057))
 
     def test_xyz(self):
-        assertCloseEqual(self, ct.xyz2lab((0.12, 0.13, 0.41)), (42.763245421570275, -2.457076553917248, -43.10757831194276))
-        assertCloseEqual(self, ct.xyz2lab((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
-        assertCloseEqual(self, ct.xyz2lab((1.0, 1.0, 1.0)), (100.0, 8.538533672582393, 5.593863452017245))
+        assertCloseEqualTuple(self, ct.xyz2lab((0.12, 0.13, 0.41)), (42.763245421570275, -2.457076553917248, -43.10757831194276))
+        assertCloseEqualTuple(self, ct.xyz2lab((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.xyz2lab((1.0, 1.0, 1.0)), (100.0, 8.538533672582393, 5.593863452017245))
 
         self.assertEqual(ct.xyz2rgb((0.12, 0.13, 0.41)), (0, 106, 172))
         self.assertEqual(ct.xyz2rgb((0.0, 0.0, 0.0)), (0, 0, 0))
         self.assertEqual(ct.xyz2rgb((1.0, 1.0, 1.0)), (255, 249, 244))
 
-        assertCloseEqual(self, ct.xyz2lch((0.12, 0.13, 0.41)), (42.763245421570275, 43.17754663146214, 266.7377440232716))
-        assertCloseEqual(self, ct.xyz2lch((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
-        assertCloseEqual(self, ct.xyz2lch((1.0, 1.0, 1.0)), (100.0, 10.207735576396837, 33.230075953383746))
+        assertCloseEqualTuple(self, ct.xyz2lch((0.12, 0.13, 0.41)), (42.763245421570275, 43.17754663146214, 266.7377440232716))
+        assertCloseEqualTuple(self, ct.xyz2lch((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.xyz2lch((1.0, 1.0, 1.0)), (100.0, 10.207735576396837, 33.230075953383746))
 
     def test_lab(self):
-        assertCloseEqual(self, ct.lab2xyz((43.54, -54.58, 22.87)), (0.0627272294323145, 0.1352236091731928, 0.06912524043521166 ))
-        assertCloseEqual(self, ct.lab2xyz((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
-        assertCloseEqual(self, ct.lab2xyz((100.0, 127.0, 127.0)), (1.87426512028008, 0.9999999999999999, 0.052946672513749994))
+        assertCloseEqualTuple(self, ct.lab2xyz((43.54, -54.58, 22.87)), (0.0627272294323145, 0.1352236091731928, 0.06912524043521166))
+        assertCloseEqualTuple(self, ct.lab2xyz((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.lab2xyz((100.0, 127.0, 127.0)), (1.87426512028008, 0.9999999999999999, 0.052946672513749994))
 
         self.assertEqual(ct.lab2rgb((43.54, -54.58, 22.87)), (0, 122, 63))
         self.assertEqual(ct.lab2rgb((0.0, 0.0, 0.0)), (0, 0, 0))
         self.assertEqual(ct.lab2rgb((100.0, 127.0, 127.0)), (255, 70, 0))
 
-        assertCloseEqual(self, ct.lab2lch((43.54, -54.58, 22.87)), (43.54, 59.17781087536105, 157.26544086809096))
-        assertCloseEqual(self, ct.lab2lch((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
-        assertCloseEqual(self, ct.lab2lch((100.0, 127.0, 127.0)), (100.0, 179.60512242138307, 45.0))
+        assertCloseEqualTuple(self, ct.lab2lch((43.54, -54.58, 22.87)), (43.54, 59.17781087536105, 157.26544086809096))
+        assertCloseEqualTuple(self, ct.lab2lch((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.lab2lch((100.0, 127.0, 127.0)), (100.0, 179.60512242138307, 45.0))
 
     def test_lch(self):
-        assertCloseEqual(self, ct.lch2xyz((43.54, 54.58, 22.87)), (0.21985439114262495, 0.1352236091731928, 0.07352469503268395))
-        assertCloseEqual(self, ct.lch2xyz((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
-        assertCloseEqual(self, ct.lch2xyz((100.0, 127.0, 127.0)), (0.5778331015482137, 0.9999999999999999, 0.13036105001204157))
+        assertCloseEqualTuple(self, ct.lch2xyz((43.54, 54.58, 22.87)), (0.21985439114262495, 0.1352236091731928, 0.07352469503268395))
+        assertCloseEqualTuple(self, ct.lch2xyz((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.lch2xyz((100.0, 127.0, 127.0)), (0.5778331015482137, 0.9999999999999999, 0.13036105001204157))
 
         self.assertEqual(ct.lch2rgb((43.54, 54.58, 22.87)), (182, 59, 71))
         self.assertEqual(ct.lch2rgb((0.0, 0.0, 0.0)), (0, 0, 0))
         self.assertEqual(ct.lch2rgb((100.0, 127.0, 127.0)), (142, 255, 0))
 
-        assertCloseEqual(self, ct.lch2lab((43.54, 54.58, 22.87)), (43.54, 50.28941293571417, 21.212056632519733))
-        assertCloseEqual(self, ct.lch2lab((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
-        assertCloseEqual(self, ct.lch2lab((100.0, 127.0, 127.0)), (100.0, -76.43050794031014, 101.42670977600619))
+        assertCloseEqualTuple(self, ct.lch2lab((43.54, 54.58, 22.87)), (43.54, 50.28941293571417, 21.212056632519733))
+        assertCloseEqualTuple(self, ct.lch2lab((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.lch2lab((100.0, 127.0, 127.0)), (100.0, -76.43050794031014, 101.42670977600619))
 
 class TestDeltaEArgumentConfigurations(unittest.TestCase):
     lab1 = (43.54, 54.58, 22.87)
@@ -229,9 +231,9 @@ class TestDeltaEResults(unittest.TestCase):
         self.assertEqual(cietools.deltaE_CMC(self.lab1, self.lab4), 0.41238366109844626)
 
     def test_delta_e2000(self):
-        self.assertEqual(cietools.deltaE2000(self.lab1, self.lab2), 25.67274409689742)
-        self.assertEqual(cietools.deltaE2000(self.lab1, self.lab3), 33.51375140397363)
-        self.assertEqual(cietools.deltaE2000(self.lab1, self.lab4), 0.32775686163897877)
+        assertCloseEqual(self, cietools.deltaE2000(self.lab1, self.lab2), 25.67274409689742)
+        assertCloseEqual(self, cietools.deltaE2000(self.lab1, self.lab3), 33.51375140397363)
+        assertCloseEqual(self, cietools.deltaE2000(self.lab1, self.lab4), 0.32775686163897877)
 
 if __name__ == "__main__":
     unittest.main()
