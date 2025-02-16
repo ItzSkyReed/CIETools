@@ -12,7 +12,7 @@ def assertCloseEqualTuple(self, clr1, clr2, tolerance=sys.float_info.epsilon):
         self.assertTrue(math.isclose(a, b, abs_tol=tolerance))
 
 def assertCloseEqual(self, clr1, clr2, tolerance=sys.float_info.epsilon * 3):
-    self.assertTrue(math.isclose(a, b, abs_tol=tolerance))
+    self.assertTrue(math.isclose(clr1, clr2, abs_tol=tolerance))
 
 functions = {
     "rgb": [
