@@ -4,7 +4,7 @@ def rgb2lab(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
     :param rgb: Tuple with RGB values (R, G, B)
     :return: Tuple with LAB values (L, A, B)
     """
-    pass
+    ...
 
 
 def rgb2lch(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
@@ -13,7 +13,7 @@ def rgb2lch(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
     :param rgb: Tuple with RGB values (R, G, B)
     :return: Tuple with LCh values (L, C, h)
     """
-    pass
+    ...
 
 
 def rgb2xyz(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
@@ -22,7 +22,7 @@ def rgb2xyz(rgb: tuple[int, int, int]) -> tuple[float, float, float]:
     :param rgb: Tuple with RGB values (R, G, B)
     :return: Tuple with XYZ values (X, Y, Z)
     """
-    pass
+    ...
 
 
 def xyz2lab(xyz: tuple[float, float, float]) -> tuple[float, float, float]:
@@ -31,7 +31,7 @@ def xyz2lab(xyz: tuple[float, float, float]) -> tuple[float, float, float]:
     :param xyz: Tuple with XYZ values (X > 0; 0 <= Y <= 100; Z > 0)
     :return: Tuple with LAB values (L, A, B)
     """
-    pass
+    ...
 
 
 def xyz2lch(xyz: tuple[float, float, float]) -> tuple[float, float, float]:
@@ -40,7 +40,7 @@ def xyz2lch(xyz: tuple[float, float, float]) -> tuple[float, float, float]:
     :param xyz: Tuple with XYZ values (X > 0; 0 <= Y <= 100; Z > 0)
     :return: Tuple with LCh values (L, C, h)
     """
-    pass
+    ...
 
 
 def xyz2rgb(xyz: tuple[float, float, float]) -> tuple[int, int, int]:
@@ -49,7 +49,7 @@ def xyz2rgb(xyz: tuple[float, float, float]) -> tuple[int, int, int]:
     :param xyz: Tuple with XYZ values (X > 0; 0 <= Y <= 100; Z > 0)
     :return: Tuple with RGB values (R, G, B)
     """
-    pass
+    ...
 
 
 def lab2lch(lab: tuple[float, float, float]) -> tuple[float, float, float]:
@@ -58,7 +58,7 @@ def lab2lch(lab: tuple[float, float, float]) -> tuple[float, float, float]:
     :param lab: Tuple with LAB values (0 <= L <= 100; -127 <= A <= 127; -127 <= B <= 127)
     :return: Tuple with LCh values (L, C, h)
     """
-    pass
+    ...
 
 
 def lab2xyz(lab: tuple[float, float, float]) -> tuple[float, float, float]:
@@ -67,7 +67,7 @@ def lab2xyz(lab: tuple[float, float, float]) -> tuple[float, float, float]:
     :param lab: Tuple with LAB values (0 <= L <= 100; -127 <= A <= 127; -127 <= B <= 127)
     :return: Tuple with XYZ values (X, Y, Z)
     """
-    pass
+    ...
 
 
 def lab2rgb(lab: tuple[float, float, float]) -> tuple[int, int, int]:
@@ -76,7 +76,7 @@ def lab2rgb(lab: tuple[float, float, float]) -> tuple[int, int, int]:
     :param lab: Tuple with LAB values (0 <= L <= 100; -127 <= A <= 127; -127 <= B <= 127)
     :return: Tuple with RGB values (R, G, B)
     """
-    pass
+    ...
 
 
 def lch2lab(lch: tuple[float, float, float]) -> tuple[float, float, float]:
@@ -85,7 +85,7 @@ def lch2lab(lch: tuple[float, float, float]) -> tuple[float, float, float]:
     :param lch: Tuple with LCh values (0 <= L <= 100; 0 <= C <= 100; 0 <= h <= 360)
     :return: Tuple with LAB values (L, A, B)
     """
-    pass
+    ...
 
 
 def lch2xyz(lch: tuple[float, float, float]) -> tuple[float, float, float]:
@@ -94,7 +94,7 @@ def lch2xyz(lch: tuple[float, float, float]) -> tuple[float, float, float]:
     :param lch: Tuple with LAB values (0 <= L <= 100; 0 <= C <= 100; 0 <= h <= 360)
     :return: Tuple with XYZ values (X, Y, Z)
     """
-    pass
+    ...
 
 
 def lch2rgb(lch: tuple[float, float, float]) -> tuple[int, int, int]:
@@ -103,7 +103,7 @@ def lch2rgb(lch: tuple[float, float, float]) -> tuple[int, int, int]:
     :param lch: Tuple with LAB values (0 <= L <= 100; 0 <= C <= 100; 0 <= h <= 360)
     :return: Tuple with RGB values (R, G, B)
     """
-    pass
+    ...
 
 
 def deltaE76(lab1: tuple[float, float, float], lab2: tuple[float, float, float]) -> float:
@@ -123,7 +123,7 @@ def deltaE76(lab1: tuple[float, float, float], lab2: tuple[float, float, float])
 
     :return: The Euclidean distance (ΔE*) between the two LAB colors.
     """
-    pass
+    ...
 
 
 def deltaE94(lab1: tuple[float, float, float], lab2: tuple[float, float, float]) -> float:
@@ -148,7 +148,7 @@ def deltaE94(lab1: tuple[float, float, float], lab2: tuple[float, float, float])
 
     :return: The perceptually improved color difference (ΔE94*) between the two LAB colors.
     """
-    pass
+    ...
 
 def deltaE_CMC(lab1: tuple[float, float, float], lab2: tuple[float, float, float]) -> float:
     """
@@ -176,7 +176,7 @@ def deltaE_CMC(lab1: tuple[float, float, float], lab2: tuple[float, float, float
 
     :return: The perceptual color difference (ΔE_CMC*) between the two LAB colors.
     """
-    pass
+    ...
 
 def deltaE2000(lab1: tuple[float, float, float], lab2: tuple[float, float, float]) -> float:
     """
@@ -204,4 +204,4 @@ def deltaE2000(lab1: tuple[float, float, float], lab2: tuple[float, float, float
 
     :return: The perceptual color difference (ΔE2000*) between the two LAB colors.
     """
-    pass
+    ...

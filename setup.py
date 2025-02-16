@@ -1,15 +1,16 @@
 from setuptools import setup, Extension, find_packages
 import sys
 
-
+# Определение компилятора в зависимости от платформы
 is_msvc = sys.platform == "win32"
 if is_msvc:
     extra_compile_args = ['/std:c11', '/O2', '/fp:fast']
 else:
     extra_compile_args = ['-std=c11', '-O3', '-ffast-math']
 
+# Создание расширения для C
 module = Extension(
-    'cietools',
+    'cietools._cietools_c_ext',
     sources=[
         'src/cietools/cietools.c',
         'src/cietools/conversions.c',
@@ -24,15 +25,15 @@ module = Extension(
     extra_link_args=[]
 )
 
+
 setup(
     name='cietools',
     version='0.1',
     description='cietools is a library to work with CIE format',
     ext_modules=[module],
-    packages=find_packages('src'),
-    package_dir={'': 'src'},
+    packages=find_packages(),
     package_data={
-        'cietools-stubs': [
+        'cietools': [
             '*.pyi',
             'py.typed'
         ]

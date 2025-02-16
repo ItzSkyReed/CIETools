@@ -106,13 +106,14 @@ static PyMethodDef CieToolsMethods[] = {
     {NULL, NULL, 0, NULL} // END
 };
 
-static PyModuleDef cietools = {
+static PyModuleDef cietools_c_ext = {
     PyModuleDef_HEAD_INIT,
-    "cietools",
+    "_cietools_c_ext",
     "Library to work with CIE color spaces",
     -1,
     CieToolsMethods
 };
-PyMODINIT_FUNC PyInit_cietools(void) {
-    return PyModule_Create(&cietools); // Создание и возврат модуля
+
+PyMODINIT_FUNC PyInit__cietools_c_ext(void) {
+    return PyModule_Create(&cietools_c_ext);
 }
