@@ -8,22 +8,22 @@
 
 // Function to check and extract LCh values from the input
 static int XYZ_check_and_extract(PyObject *xyz, XYZ *xyz_color) {
-    if (!PySequence_Check(xyz)) {
+    if (!PySequence_Check(xyz) || PyUnicode_Check(xyz)) {
         PyErr_SetString(PyExc_TypeError, "Expected a sequence");
         return 0; // Failure
     }
 
     if (PySequence_Size(xyz) != 3) {
-        PyErr_SetString(PyExc_ValueError, "XYZ argument must have exactly 3 elements");
+        PyErr_SetString(PyExc_ValueError, "XYZ argument must have exactly 3 elements in sequence");
         return 0; // Failure
     }
 
-
     if (!get_float_from_sequence(xyz, 0, &xyz_color->x) ||
-        !get_float_from_sequence(xyz, 1, &xyz_color->y) ||
-        !get_float_from_sequence(xyz, 2, &xyz_color->z)) {
+    !get_float_from_sequence(xyz, 1, &xyz_color->y) ||
+    !get_float_from_sequence(xyz, 2, &xyz_color->z)) {
         return 0;
-        }
+    }
+
 
     if (xyz_color->x < 0.0 || xyz_color->x > 1.0) {
         PyErr_SetString(PyExc_ValueError, "X element must be in range [0, 1]");

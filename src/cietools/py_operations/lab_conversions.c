@@ -7,21 +7,21 @@
 
 // Function to check and extract LCh values from the input
 int LAB_check_and_extract(PyObject *lab, LAB *lab_color) {
-    if (!PySequence_Check(lab)) {
+    if (!PySequence_Check(lab) || PyUnicode_Check(lab)) {
         PyErr_SetString(PyExc_TypeError, "Expected a sequence");
         return 0; // Failure
     }
 
     if (PySequence_Size(lab) != 3) {
-        PyErr_SetString(PyExc_ValueError, "LAB argument must have exactly 3 elements");
+        PyErr_SetString(PyExc_ValueError, "LAB argument must have exactly 3 elements in sequence");
         return 0; // Failure
     }
 
     if (!get_float_from_sequence(lab, 0, &lab_color->l) ||
-        !get_float_from_sequence(lab, 1, &lab_color->a) ||
-        !get_float_from_sequence(lab, 2, &lab_color->b)) {
+    !get_float_from_sequence(lab, 1, &lab_color->a) ||
+    !get_float_from_sequence(lab, 2, &lab_color->b)) {
         return 0;
-        }
+    }
 
     if (lab_color->l < 0.0 || lab_color->l > 100.0) {
         PyErr_SetString(PyExc_ValueError, "L* element must be in range [0, 100]");
