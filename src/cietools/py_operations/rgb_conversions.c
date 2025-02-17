@@ -16,18 +16,24 @@ static int RGB_check_and_extract(PyObject* rgb, RGB* rgb_color) {
         return 0;  // Failure
     }
 
-    for (size_t i = 0; i < 3; i++) {
+    for (Py_ssize_t i = 0; i < 3; i++) {
         PyObject* item = PySequence_GetItem(rgb, i);  // Get sequence element
+
+        if (!item) {
+            return 0;
+        }
 
         if (!PyLong_Check(item)) {
             PyErr_SetString(PyExc_TypeError, "RGB elements must be integers");
-            return 0;  // Failure
+            Py_DECREF(item);
+            return 0;// Failure
         }
 
         const long value = PyLong_AsLong(item);  // Convert to long
 
         if (value < 0 || value > 255) {
             PyErr_SetString(PyExc_ValueError, "RGB elements must be in range [0, 255]");
+            Py_DECREF(item);
             return 0;  // Failure
         }
 

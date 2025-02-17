@@ -2,9 +2,9 @@ name: Build, Test and Publish CIETools
 
 on:
   push:
-    branches: [ master ]
+    branches: [ "**" ]
   pull_request:
-    branches: [ master ]
+    branches: [ "**" ]
 
 jobs:
   build:
@@ -71,20 +71,12 @@ jobs:
 
       - name: Install the built wheel on Unix
         if: runner.os != 'Windows'
-        run: pip install dist/*.whl && export PYTHONPATH=$PYTHONPATH:./dist
+        run: pip install dist/*.whl
 
       - name: Install the built wheel on Windows
         if: runner.os == 'Windows'
         shell: powershell
-        run: |
-          pip install (Get-ChildItem dist\*.whl).FullName
-          $env:PYTHONPATH = "dist;" + $env:PYTHONPATH
-
-      - name: Log installed packages
-        run: pip list
-
-      - name: Log Python path
-        run: python -c "import sys; print(sys.path)"
+        run: pip install (Get-ChildItem dist\*.whl).FullName
 
       - name: Run tests
         run: python tests/test_all.py
