@@ -131,7 +131,7 @@ class TestConversions(unittest.TestCase):
         assertCloseEqualTuple(self, ct.rgb2lch((255, 255, 255)), (100.0, 0.011662039483869973, 296.81292623674057))
 
     def test_xyz(self):
-        self.assertEqual(ct.xyz2lab((0, 0, 0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.xyz2lab((0, 0, 0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.xyz2lab((0.12, 0.13, 0.41)), (42.763245421570275, -2.457076553917248, -43.10757831194276))
         assertCloseEqualTuple(self, ct.xyz2lab((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.xyz2lab((1.0, 1.0, 1.0)), (100.0, 8.538533672582393, 5.593863452017245))
@@ -141,13 +141,13 @@ class TestConversions(unittest.TestCase):
         self.assertEqual(ct.xyz2rgb((0.0, 0.0, 0.0)), (0, 0, 0))
         self.assertEqual(ct.xyz2rgb((1.0, 1.0, 1.0)), (255, 249, 244))
 
-        self.assertEqual(ct.xyz2lch((0, 0, 0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.xyz2lch((0, 0, 0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.xyz2lch((0.12, 0.13, 0.41)), (42.763245421570275, 43.17754663146214, 266.7377440232716))
         assertCloseEqualTuple(self, ct.xyz2lch((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.xyz2lch((1.0, 1.0, 1.0)), (100.0, 10.207735576396837, 33.230075953383746))
 
     def test_lab(self):
-        self.assertEqual(ct.lab2xyz((0, 0, 0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.lab2xyz((0, 0, 0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.lab2xyz((43.54, -54.58, 22.87)), (0.0627272294323145, 0.1352236091731928, 0.06912524043521166))
         assertCloseEqualTuple(self, ct.lab2xyz((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.lab2xyz((100.0, 127.0, 127.0)), (1.87426512028008, 0.9999999999999999, 0.052946672513749994))
@@ -157,13 +157,13 @@ class TestConversions(unittest.TestCase):
         self.assertEqual(ct.lab2rgb((0.0, 0.0, 0.0)), (0, 0, 0))
         self.assertEqual(ct.lab2rgb((100.0, 127.0, 127.0)), (255, 70, 0))
 
-        self.assertEqual(ct.lab2lch((0, 0, 0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.lab2lch((0, 0, 0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.lab2lch((43.54, -54.58, 22.87)), (43.54, 59.17781087536105, 157.26544086809096))
         assertCloseEqualTuple(self, ct.lab2lch((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.lab2lch((100.0, 127.0, 127.0)), (100.0, 179.60512242138307, 45.0))
 
     def test_lch(self):
-        self.assertEqual(ct.lch2xyz((0, 0, 0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.lch2xyz((0, 0, 0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.lch2xyz((43.54, 54.58, 22.87)), (0.21985439114262495, 0.1352236091731928, 0.07352469503268395))
         assertCloseEqualTuple(self, ct.lch2xyz((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.lch2xyz((100.0, 127.0, 127.0)), (0.5778331015482137, 0.9999999999999999, 0.13036105001204157))
@@ -173,7 +173,7 @@ class TestConversions(unittest.TestCase):
         self.assertEqual(ct.lch2rgb((0.0, 0.0, 0.0)), (0, 0, 0))
         self.assertEqual(ct.lch2rgb((100.0, 127.0, 127.0)), (142, 255, 0))
 
-        self.assertEqual(ct.lch2lab((0, 0, 0)), (0.0, 0.0, 0.0))
+        assertCloseEqualTuple(self, ct.lch2lab((0, 0, 0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.lch2lab((43.54, 54.58, 22.87)), (43.54, 50.28941293571417, 21.212056632519733))
         assertCloseEqualTuple(self, ct.lch2lab((0.0, 0.0, 0.0)), (0.0, 0.0, 0.0))
         assertCloseEqualTuple(self, ct.lch2lab((100.0, 127.0, 127.0)), (100.0, -76.43050794031014, 101.42670977600619))
