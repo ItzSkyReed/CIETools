@@ -27,3 +27,6 @@ delta_94 = cietools.deltaE94(lab1, lab2)
 delta_cmc = cietools.deltaE_CMC(lab1, lab2)
 delta_2000 = cietools.deltaE2000(lab1, lab2)
 ```
+
+# Credits:
+- Icon made by @_Fedor_F
