@@ -1,6 +1,6 @@
-#include <math.h>
 #include "color_structs.h"
 #include "gradients.h"
+#include <math.h>
 
 OKlab oklab_linear_gradient(const OKlab *color1 ,const OKlab *color2, OKlab *gradient, const int steps) {
 
