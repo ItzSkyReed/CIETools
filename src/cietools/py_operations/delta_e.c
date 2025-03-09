@@ -1,6 +1,7 @@
 #include <Python.h>
 #include "delta_e.h"
 #include "lab_conversions.h"
+#include "oklab_conversions.h"
 #include "../color_difference.h"
 #define PY_SSIZE_T_CLEAN
 
@@ -26,6 +27,28 @@ static int parse_lab_args(PyObject *args, LAB *lab1, LAB *lab2) {
     return 1;
 }
 
+static int parse_oklab_args(PyObject *args, OKlab *oklab1, OKlab *oklab2) {
+    PyObject *arg1, *arg2;
+
+    if (PyTuple_Size(args) != 2) {
+        PyErr_SetString(PyExc_TypeError, "Expected exactly two arguments.");
+        return 0;
+    }
+
+    if (!PyArg_ParseTuple(args, "OO", &arg1, &arg2)) {
+        return 0;
+    }
+
+    if (!OKlab_check_and_extract(arg1, oklab1)) {
+        return 0;
+    }
+    if (!OKlab_check_and_extract(arg2, oklab2)) {
+        return 0;
+    }
+
+    return 1;
+}
+
 // Function to compute Delta E 1976
 PyObject* PyDeltaE76(PyObject* self, PyObject* args) {
     LAB lab1, lab2;
@@ -35,6 +58,28 @@ PyObject* PyDeltaE76(PyObject* self, PyObject* args) {
     }
 
     return PyFloat_FromDouble(delta_e_cie_76(&lab1, &lab2));
+}
+
+// Function to compute Delta EOK
+PyObject* PyDeltaE_OK(PyObject* self, PyObject* args) {
+    OKlab oklab1, oklab2;
+
+    if (!parse_oklab_args(args, &oklab1, &oklab2)) {
+        return NULL;
+    }
+
+    return PyFloat_FromDouble(delta_e_OK(&oklab1, &oklab2));
+}
+
+// Function to compute Delta EOK2
+PyObject* PyDeltaE_OK2(PyObject* self, PyObject* args) {
+    OKlab oklab1, oklab2;
+
+    if (!parse_oklab_args(args, &oklab1, &oklab2)) {
+        return NULL;
+    }
+
+    return PyFloat_FromDouble(delta_e_OK2(&oklab1, &oklab2));
 }
 
 // Function to compute Delta E 1994

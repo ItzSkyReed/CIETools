@@ -78,6 +78,40 @@ PyObject *PyXYZ2LAB(PyObject *self, PyObject *arg) {
     return tuple;
 }
 
+PyObject *PyXYZ2HSL(PyObject *self, PyObject *arg) {
+    XYZ xyz_color;
+
+    if (!XYZ_check_and_extract(arg, &xyz_color)) {
+        return NULL; // Error is already set inside the check function
+    }
+
+    const HSL hsl_color = xyz2hsl(&xyz_color);
+
+    PyObject *tuple = PyTuple_New(3);
+    PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(hsl_color.h));
+    PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(hsl_color.s));
+    PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(hsl_color.l));
+
+    return tuple;
+}
+
+PyObject *PyXYZ2HSV(PyObject *self, PyObject *arg) {
+    XYZ xyz_color;
+
+    if (!XYZ_check_and_extract(arg, &xyz_color)) {
+        return NULL; // Error is already set inside the check function
+    }
+
+    const HSV hsv_color = xyz2hsv(&xyz_color);
+
+    PyObject *tuple = PyTuple_New(3);
+    PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(hsv_color.h));
+    PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(hsv_color.s));
+    PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(hsv_color.v));
+
+    return tuple;
+}
+
 PyObject *PyXYZ2RGB(PyObject *self, PyObject *arg) {
     XYZ xyz_color;
 

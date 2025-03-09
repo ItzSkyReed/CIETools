@@ -7,6 +7,29 @@ double delta_e_cie_76(const LAB *lab1, const LAB *lab2) {
     const double delta_b = lab1->b - lab2->b;
     return hypot(delta_l, hypot(delta_a, delta_b));
 }
+// More accurate color-difference formulae
+//than the simple1976 Euclidean distance in CIE Lab
+double delta_e_OK(const OKlab *oklab1, const OKlab *oklab2) {
+    const double delta_l = oklab1->l - oklab2->l;
+    const double delta_a = oklab1->a - oklab2->a;
+    const double delta_b = oklab1->b - oklab2->b;
+    return hypot(delta_l, hypot(delta_a, delta_b));
+}
+
+// More accurate color-difference formulae
+// than the simple 1976 Euclidean distance in CIE Lab
+// The Oklab a and b axes are scaled relative to the L axis, for better uniformity
+// Björn Ottosson said:
+// "I've recently done some tests with color distance datasets as implemented
+// in Colorio and on both the Combvd dataset and the OSA-UCS dataset a
+// scale factor of slightly more than 2 for a and b would give the best results
+// (2.016 works best for Combvd and 2.045 for the OSA-UCS dataset)."
+double delta_e_OK2(const OKlab *oklab1, const OKlab *oklab2) {
+    const double delta_l = oklab1->l - oklab2->l;
+    const double delta_a = 2.0 * (oklab1->a - oklab2->a);
+    const double delta_b = 2.0 * (oklab1->b - oklab2->b);
+    return hypot(delta_l, hypot(delta_a, delta_b));
+}
 
 double delta_e_cie_94(const LAB *lab1, const LAB *lab2) {
     const double delta_l = lab1->l - lab2->l;

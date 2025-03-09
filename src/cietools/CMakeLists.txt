@@ -23,6 +23,18 @@ add_library(CIETools SHARED
         py_operations/delta_e.h
         py_operations/common.h
         py_operations/common.c
+        gradients.c
+        gradients.h
+        py_operations/hsv_conversions.c
+        py_operations/hsv_conversions.h
+        py_operations/hsl_conversions.c
+        py_operations/hsl_conversions.h
+        py_operations/oklab_conversions.c
+        py_operations/oklab_conversions.h
+        py_operations/oklch_conversions.c
+        py_operations/oklch_conversions.h
+        py_operations/color_utils.c
+        py_operations/color_utils.h
 )
 
 if(WIN32)

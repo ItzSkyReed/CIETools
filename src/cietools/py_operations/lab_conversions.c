@@ -5,7 +5,7 @@
 #include "common.h"
 #define PY_SSIZE_T_CLEAN
 
-// Function to check and extract LCh values from the input
+// Function to check and extract LAB values from the input
 int LAB_check_and_extract(PyObject *lab, LAB *lab_color) {
     if (!PySequence_Check(lab) || PyUnicode_Check(lab)) {
         PyErr_SetString(PyExc_TypeError, "Expected a sequence");
@@ -89,6 +89,40 @@ PyObject *PyLAB2RGB(PyObject *self, PyObject *arg) {
     PyTuple_SetItem(tuple, 0, PyLong_FromLong(rgb_color.r));
     PyTuple_SetItem(tuple, 1, PyLong_FromLong(rgb_color.g));
     PyTuple_SetItem(tuple, 2, PyLong_FromLong(rgb_color.b));
+
+    return tuple;
+}
+
+PyObject *PyLAB2HSL(PyObject *self, PyObject *arg) {
+    LAB LAB_color;
+
+    if (!LAB_check_and_extract(arg, &LAB_color)) {
+        return NULL; // Error is already set inside the check function
+    }
+
+    const HSL hsl_color = lab2hsl(&LAB_color);
+
+    PyObject *tuple = PyTuple_New(3);
+    PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(hsl_color.h));
+    PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(hsl_color.s));
+    PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(hsl_color.l));
+
+    return tuple;
+}
+
+PyObject *PyLAB2HSV(PyObject *self, PyObject *arg) {
+    LAB LAB_color;
+
+    if (!LAB_check_and_extract(arg, &LAB_color)) {
+        return NULL; // Error is already set inside the check function
+    }
+
+    const HSV hsv_color = lab2hsv(&LAB_color);
+
+    PyObject *tuple = PyTuple_New(3);
+    PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(hsv_color.h));
+    PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(hsv_color.s));
+    PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(hsv_color.v));
 
     return tuple;
 }

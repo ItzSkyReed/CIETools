@@ -5,6 +5,7 @@ PyObject *PyDeltaE76(PyObject* self, PyObject* args);
 PyObject *PyDeltaE94(PyObject* self, PyObject* args);
 PyObject *PyDeltaE_CMC(PyObject* self, PyObject* args);
 PyObject *PyDeltaE2000(PyObject* self, PyObject* args);
-
+PyObject* PyDeltaE_OK(PyObject* self, PyObject* args);
+PyObject* PyDeltaE_OK2(PyObject* self, PyObject* args);
 
 #endif //CIE_DELTAS_H

@@ -4,5 +4,7 @@
 PyObject* PyXYZ2RGB(PyObject* self, PyObject* arg);
 PyObject* PyXYZ2LAB(PyObject* self, PyObject* arg);
 PyObject* PyXYZ2LCh(PyObject* self, PyObject* arg);
+PyObject* PyXYZ2HSV(PyObject* self, PyObject* arg);
+PyObject* PyXYZ2HSL(PyObject* self, PyObject* arg);
 
 #endif //XYZ_CONVERSIONS_H

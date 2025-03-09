@@ -93,3 +93,37 @@ PyObject *PyLCh2RGB(PyObject *self, PyObject *arg) {
 
     return tuple;
 }
+
+PyObject *PyLCh2HSL(PyObject *self, PyObject *arg) {
+    LCh LCh_color;
+
+    if (!LCh_check_and_extract(arg, &LCh_color)) {
+        return NULL; // Error is already set inside the check function
+    }
+
+    const HSL hsl_color = lch2hsl(&LCh_color);
+
+    PyObject *tuple = PyTuple_New(3);
+    PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(hsl_color.h));
+    PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(hsl_color.s));
+    PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(hsl_color.l));
+
+    return tuple;
+}
+
+PyObject *PyLCh2HSV(PyObject *self, PyObject *arg) {
+    LCh LCh_color;
+
+    if (!LCh_check_and_extract(arg, &LCh_color)) {
+        return NULL; // Error is already set inside the check function
+    }
+
+    const HSV hsv_color = lch2hsv(&LCh_color);
+
+    PyObject *tuple = PyTuple_New(3);
+    PyTuple_SetItem(tuple, 0, PyFloat_FromDouble(hsv_color.h));
+    PyTuple_SetItem(tuple, 1, PyFloat_FromDouble(hsv_color.s));
+    PyTuple_SetItem(tuple, 2, PyFloat_FromDouble(hsv_color.v));
+
+    return tuple;
+}

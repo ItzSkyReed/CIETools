@@ -17,6 +17,14 @@ typedef union {
 
 typedef union {
     struct {
+        double l, a, b;
+    };
+    double channels[3];
+} OKlab;
+
+
+typedef union {
+    struct {
         double x, y, z;
     };
     double channels[3];
@@ -28,6 +36,28 @@ typedef union {
     };
     double channels[3];
 } LCh;
+
+typedef union {
+    struct {
+        double l, c, h;
+    };
+    double channels[3];
+} OKlch;
+
+
+typedef union {
+    struct {
+        double h, s, v;
+    };
+    double channels[3];
+} HSV;
+
+typedef union {
+    struct {
+        double h, s, l;
+    };
+    double channels[3];
+} HSL;
 
 
 
