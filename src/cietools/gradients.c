@@ -2,7 +2,7 @@
 #include "color_structs.h"
 #include "gradients.h"
 
-OKlab *oklab_linear_gradient(const OKlab *color1 ,const OKlab *color2, OKlab *gradient, const int steps) {
+OKlab oklab_linear_gradient(const OKlab *color1 ,const OKlab *color2, OKlab *gradient, const int steps) {
 
     const double inv_steps = 1.0 / (steps - 1);
     for (int i = 0; i < steps; i++) {
@@ -12,10 +12,10 @@ OKlab *oklab_linear_gradient(const OKlab *color1 ,const OKlab *color2, OKlab *gr
         gradient[i].b = color1->b * (1 - t) + color2->b * t;
     }
 
-    return gradient;
+    return *gradient;
 }
 
-OKlab *oklab_cosine_gradient(const OKlab *color1, const OKlab *color2, OKlab *gradient, const unsigned int steps) {
+OKlab oklab_cosine_gradient(const OKlab *color1, const OKlab *color2, OKlab *gradient, const int steps) {
 
     const double step_factor = M_PI / (steps - 1);
     const double l_diff = (color2->l - color1->l) * 0.5;
@@ -29,5 +29,5 @@ OKlab *oklab_cosine_gradient(const OKlab *color1, const OKlab *color2, OKlab *gr
         gradient[i].b = color1->b + b_diff * cos_t;
     }
 
-    return gradient;
+    return *gradient;
 }
