@@ -28,7 +28,7 @@ jobs:
           python-version: '3.13'
 
       - name: Install build dependencies
-        run: pip install setuptools wheel
+        run: pip install -r requirements.txt
 
       - name: Set up QEMU (cross compile arm64 on linux)
         if: matrix.arch == 'arm64' && matrix.os == 'ubuntu-latest'
