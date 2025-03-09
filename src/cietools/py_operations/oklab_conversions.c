@@ -23,18 +23,18 @@ int OKlab_check_and_extract(PyObject *lab, OKlab *oklab_color) {
         return 0;
     }
 
-    if (oklab_color->l < 0.0 || oklab_color->l > 100.0) {
-        PyErr_SetString(PyExc_ValueError, "L* element must be in range [0, 100]");
+    if (oklab_color->l < 0.0 || oklab_color->l > 1.0) {
+        PyErr_SetString(PyExc_ValueError, "L* element must be in range [0, 1]");
         return 0;
     }
 
-    if (oklab_color->a < -127.0 || oklab_color->a > 127.0) {
-        PyErr_SetString(PyExc_ValueError, "A* element must be in range [-127, 127]");
+    if (oklab_color->a < -0.5 || oklab_color->a > 0.5) {
+        PyErr_SetString(PyExc_ValueError, "A* element must be in range [-0.5, 0.5]");
         return 0;
     }
 
-    if (oklab_color->b < -127.0 || oklab_color->b > 127.0) {
-        PyErr_SetString(PyExc_ValueError, "B* element must be in range [-127, 127]");
+    if (oklab_color->b < -0.5 || oklab_color->b > 0.5) {
+        PyErr_SetString(PyExc_ValueError, "B* element must be in range [-0.5, 0.5]");
         return 0;
     }
 

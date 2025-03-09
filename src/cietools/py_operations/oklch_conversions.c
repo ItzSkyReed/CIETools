@@ -24,13 +24,13 @@ static int OKlch_check_and_extract(PyObject *lch, OKlch *lch_color) {
     }
 
 
-    if (lch_color->l < 0.0 || lch_color->l > 100.0) {
-        PyErr_SetString(PyExc_ValueError, "L* element must be in range [0, 100]");
+    if (lch_color->l < 0.0 || lch_color->l > 1.0) {
+        PyErr_SetString(PyExc_ValueError, "L* element must be in range [0, 1]");
         return 0;
     }
 
-    if (lch_color->c < 0.0 || lch_color->c > 200.0) {
-        PyErr_SetString(PyExc_ValueError, "C* element must be in range [0, 200]");
+    if (lch_color->c < 0.0 || lch_color->c > 0.5) {
+        PyErr_SetString(PyExc_ValueError, "C* element must be in range [0, 0.5]");
         return 0;
     }
 
