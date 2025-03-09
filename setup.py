@@ -4,10 +4,8 @@ import sys
 is_msvc = sys.platform == "win32"
 if is_msvc:
     extra_compile_args = ['/std:c11', '/O2', '/fp:fast']
-    extra_link_args = []
 else:
     extra_compile_args = ['-std=c11', '-O3', '-ffast-math']
-    extra_link_args = ['-lm']
 
 module = Extension(
     'cietools._cietools_c_ext',
@@ -29,7 +27,7 @@ module = Extension(
         'src/cietools/py_operations/common.c'
     ],
     extra_compile_args=extra_compile_args,
-    extra_link_args=extra_link_args
+    extra_link_args=[]
 )
 
 
