@@ -22,7 +22,7 @@ OKlab oklab_cosine_gradient(const OKlab *color1, const OKlab *color2, OKlab *gra
     const double a_diff = (color2->a - color1->a) * 0.5;
     const double b_diff = (color2->b - color1->b) * 0.5;
 
-    for (unsigned int i = 0; i < steps; i++) {
+    for (int i = 0; i < steps; i++) {
         const double cos_t = 1 - cos(i * step_factor);
         gradient[i].l = color1->l + l_diff * cos_t;
         gradient[i].a = color1->a + a_diff * cos_t;
