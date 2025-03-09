@@ -27,7 +27,8 @@ module = Extension(
         'src/cietools/py_operations/common.c'
     ],
     extra_compile_args=extra_compile_args,
-    extra_link_args=[]
+    extra_link_args=[],
+    libraries=['m']
 )
 
 
