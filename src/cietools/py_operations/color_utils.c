@@ -4,14 +4,14 @@
 #include "color_utils.h"
 #include "../gradients.h"
 
-static int extract_gradient_args(PyObject *args, PyObject *kwargs, OKlab *oklab1, OKlab *oklab2, const int *steps) {
+static int extract_gradient_args(PyObject *args, PyObject *kwargs, OKlab *oklab1, OKlab *oklab2, int *steps) {
     PyObject *sequence1;
     PyObject *sequence2;
 
     static char *kwlist[] = {"start_oklab", "end_oklab", "steps", NULL};
 
     if (!PyArg_ParseTupleAndKeywords(args, kwargs, "OO|i", kwlist,
-                                     &sequence1, &sequence2, &steps)) {
+                                     &sequence1, &sequence2, steps)) {
         return 0;
     }
 
