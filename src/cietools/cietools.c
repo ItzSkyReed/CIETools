@@ -86,7 +86,7 @@ static PyMethodDef CieToolsMethods[] = {
     },
     {
         "lab2lch",
-        PyHSV2XYZ,
+        PyLAB2LCh,
         METH_O,
         "Convert LAB color to CIE LCh"
     },
