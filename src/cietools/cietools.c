@@ -270,13 +270,13 @@ static PyMethodDef CieToolsMethods[] = {
     {
         "linear_gradient",
         PyLinearGradient,
-        METH_VARARGS,
+        METH_VARARGS | METH_KEYWORDS,
         "Computes a linear gradient between two OKlab colors."
     },
     {
         "cosine_gradient",
         PyCosineGradient,
-        METH_VARARGS,
+        METH_VARARGS | METH_KEYWORDS,
         "Computes a cosine gradient between two OKlab colors."
     },
 
