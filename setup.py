@@ -5,7 +5,7 @@ is_msvc = sys.platform == "win32"
 if is_msvc:
     extra_compile_args = ['/std:c11', '/O2', '/fp:fast']
 else:
-    extra_compile_args = ['-std=c11', '-O3', '-ffast-math']
+    extra_compile_args = ['-std=c11', '-O3']
 
 module = Extension(
     'cietools._cietools_c_ext',
