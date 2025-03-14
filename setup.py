@@ -13,7 +13,6 @@ module = Extension(
         'src/cietools/cietools.c',
         'src/cietools/conversions.c',
         'src/cietools/color_difference.c',
-        'src/cietools/gradients.c',
         'src/cietools/py_operations/rgb_conversions.c',
         'src/cietools/py_operations/lch_conversions.c',
         'src/cietools/py_operations/lab_conversions.c',
@@ -23,7 +22,6 @@ module = Extension(
         'src/cietools/py_operations/oklab_conversions.c',
         'src/cietools/py_operations/oklch_conversions.c',
         'src/cietools/py_operations/delta_e.c',
-        'src/cietools/py_operations/color_utils.c',
         'src/cietools/py_operations/common.c'
     ],
     extra_compile_args=extra_compile_args,

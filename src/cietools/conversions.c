@@ -361,13 +361,12 @@ RGB oklab2rgb(const OKlab *oklab) {
     const double m = pow(oklab->l - 0.1055613458 * oklab->a - 0.0638541728 * oklab->b, 3);
     const double s = pow(oklab->l - 0.0894841775 * oklab->a - 1.291485548 * oklab->b, 3);
 
-    const double r = 255 * gamma_correction(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s);
-    const double g = 255 * gamma_correction(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s);
-    const double b = 255 * gamma_correction(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s);
+    const double r = gamma_correction(4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s);
+    const double g = gamma_correction(-1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s);
+    const double b = gamma_correction(-0.0041960863 * l - 0.7034186147 * m + 1.707614701 * s);
 
     return (RGB){{clamp2rgb(r), clamp2rgb(g), clamp2rgb(b)}};
 }
-
 OKlch oklab2oklch(const OKlab *oklab) {
     const double C = hypot(oklab->a, oklab->b);
     const double h = atan2(oklab->b, oklab->a) * (180.0 / M_PI);

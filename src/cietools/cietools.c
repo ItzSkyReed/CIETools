@@ -8,7 +8,6 @@
 #include "py_operations/oklab_conversions.h"
 #include "py_operations/oklch_conversions.h"
 #include "py_operations/delta_e.h"
-#include "py_operations/color_utils.h"
 #define PY_SSIZE_T_CLEAN
 
 static PyMethodDef CieToolsMethods[] = {
@@ -265,19 +264,6 @@ static PyMethodDef CieToolsMethods[] = {
         PyDeltaE_OK2,
         METH_VARARGS,
         "Computes an alternative OKLab color difference metric between two OKLab color values."
-    },
-
-    {
-        "linear_gradient",
-        (PyCFunction)PyLinearGradient,
-        METH_VARARGS | METH_KEYWORDS,
-        "Computes a linear gradient between two OKlab colors."
-    },
-    {
-        "cosine_gradient",
-        (PyCFunction)PyCosineGradient,
-        METH_VARARGS | METH_KEYWORDS,
-        "Computes a cosine gradient between two OKlab colors."
     },
 
 
